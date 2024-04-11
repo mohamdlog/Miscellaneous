@@ -3,7 +3,7 @@ import zipfile
 from pathlib import Path
 
 def convert_to_csv(input_file):
-    columns = input("\nEnter column names each separated by a space:\n").split()
+    columns = input("Enter column names each separated by a space:\n").split()
     user_input = input("Enter a delimiter or press Enter for default (comma ','): ")
     delimiter = user_input if user_input else ','
     try:
