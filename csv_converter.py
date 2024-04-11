@@ -32,6 +32,7 @@ def extract_zip_file(zip_file, output_dir):
 
 def main():
     print("Supports .zip archives, directories, and text-based files.\n")
+    
     for i in range(int(input("Enter amount of files: "))):
         file_path = Path(input(f"\nEnter file {i+1} name including extension: "))
 
