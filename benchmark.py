@@ -1,6 +1,6 @@
 import tracemalloc
 import time
-
+import gc
 
 # Define functions here, for example:
 def encode1(strs):
@@ -56,6 +56,7 @@ strs = [
 
 # Benchmark function, modify as needed:
 def benchmark(encode, decode, strs, iterations=1000):
+    gc.collect()
     tracemalloc.start()
     start_time = time.time()
     
@@ -66,6 +67,7 @@ def benchmark(encode, decode, strs, iterations=1000):
     current, peak = tracemalloc.get_traced_memory()
     tracemalloc.stop()
 
+    print(f"Function: {encode.__name__} / {decode.__name__}")
     print(f"Current memory usage: {current / 1024:.2f} KB")
     print(f"Peak memory usage: {peak / 1024:.2f} KB")
     print(f"Execution time: {(end_time - start_time) * 1000:.3f} milliseconds", end = "\n\n")
