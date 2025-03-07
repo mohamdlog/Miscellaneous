@@ -21,7 +21,8 @@ def decode1(s):
             i = word_start = word_length
         
     return res
-    
+
+
 def encode2(strs):
     res = ""
     for s in strs:
@@ -44,6 +45,7 @@ def decode2(s):
         
     return res
 
+
 # Define variables here, for example:
 strs = [
     "apple", "banana", "chocolate", "elephant", "giraffe", "moonlight", "ocean", "penguin", "quasar", "rainbow",
@@ -53,6 +55,7 @@ strs = [
     "underwater", "vortex", "waterfall", "xenon", "yacht", "zodiac", "asteroid", "breeze", "comet", "dolphin",
     "enchanted", "fossil", "galaxy", "harpoon", "illuminate", "journey", "koala", "labyrinth", "meteor", "nostalgia"
 ]
+
 
 # Benchmark function, modify as needed:
 def benchmark(encode, decode, strs, iterations=1000):
@@ -67,11 +70,26 @@ def benchmark(encode, decode, strs, iterations=1000):
     current, peak = tracemalloc.get_traced_memory()
     tracemalloc.stop()
 
-    print(f"Function: {encode.__name__} / {decode.__name__}")
-    print(f"Current memory usage: {current / 1024:.2f} KB")
-    print(f"Peak memory usage: {peak / 1024:.2f} KB")
-    print(f"Execution time: {(end_time - start_time) * 1000:.3f} milliseconds", end = "\n\n")
+    return [
+        f"{encode.__name__}/{decode.__name__}",
+        f"{current / 1024:.2f} KB",
+        f"{peak / 1024:.2f} KB",
+        f"{(end_time - start_time) * 1000:.3f} MS"
+        ]
 
-# Example usage:
-benchmark(encode1, decode1, strs)
-benchmark(encode2, decode2, strs)
+
+# Table containing all infomration
+table = [
+    ["Function", "Current Memory Usage", "Peak Memory Usage", "Execution Time"]
+    ]
+
+
+# Add functions to table
+table.extend([
+    benchmark(encode1, decode1, strs), 
+    benchmark(encode2, decode2, strs)
+    ])
+
+# Print table
+for row in table:
+    print(f"{row[0]:^22} {row[1]:^22} {row[2]:^22} {row[3]:^15}")
