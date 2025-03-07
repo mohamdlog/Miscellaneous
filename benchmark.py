@@ -72,15 +72,16 @@ def benchmark(encode, decode, strs, iterations=1000):
 
     return [
         f"{encode.__name__}/{decode.__name__}",
+        iterations,
         f"{current / 1024:.2f} KB",
         f"{peak / 1024:.2f} KB",
-        f"{(end_time - start_time) * 1000:.3f} MS"
+        f"{end_time - start_time:.3f} seconds"
         ]
 
 
 # Table containing all infomration
 table = [
-    ["Function", "Current Memory Usage", "Peak Memory Usage", "Execution Time"]
+    ["Function", "Iterations", "Current Memory Usage", "Peak Memory Usage", "Execution Time"]
     ]
 
 
@@ -90,6 +91,7 @@ table.extend([
     benchmark(encode2, decode2, strs)
     ])
 
+
 # Print table
 for row in table:
-    print(f"{row[0]:^22} {row[1]:^22} {row[2]:^22} {row[3]:^15}")
+    print(f"{row[0]:^20} {row[1]:^13} {row[2]:^21} {row[3]:^20} {row[4]:^15}")
