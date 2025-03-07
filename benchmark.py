@@ -1,13 +1,13 @@
 import tracemalloc
 import time
-import gc
+
 
 # Define functions here, for example:
 def encode1(strs):
-    res = ""
+    res = []
     for s in strs:
-        res += str(len(s)) + '#' + s
-    return res
+        res.append(str(len(s)) + '#' + s)
+    return ''.join(res)
 
 def decode1(s):
     res = []
@@ -59,7 +59,6 @@ strs = [
 
 # Benchmark function, modify as needed:
 def benchmark(encode, decode, strs, iterations=1000):
-    gc.collect()
     tracemalloc.start()
     start_time = time.time()
     
